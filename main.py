@@ -5,6 +5,7 @@ import random
 
 def main():
     image = pygame.image.load('faerun2.jpg')
+    image = pygame.transform.scale(image, (1024, 768))
     pygame.init()
     white = (255, 255, 255)
     red = (255, 0, 0)
@@ -20,9 +21,11 @@ def main():
         display_surface.blit(image, (0, 0))
         pygame.draw.circle(display_surface, red, position, 10)
         for event in pygame.event.get():
-            if event.type == pygame.QUIT:
+            if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.unicode == 'q'):
                 pygame.quit()
                 quit()
+            if event.type == pygame.KEYDOWN and event.unicode == 'n':
+                position = (random.randint(0, X), random.randint(0, Y))
             pygame.display.update()
 
 
